@@ -12,18 +12,6 @@
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-      * {
-        box-sizing: border-box;
-      }
-      h2 {
-        margin: 0;
-      }
-      body {
-        background-color: #4caddc;
-        background-image: url("./images/Group\ 12.png");
-        background-repeat: no-repeat;
-        background-position: center center;
-      }
       /* Optional styles for modal */
       .modal {
         display: none;
@@ -55,18 +43,31 @@
         cursor: pointer;
       }
 
+      /* Form styles */
+
+      * {
+        box-sizing: border-box;
+      }
+      h2 {
+        margin: 0;
+      }
+
       .form-wrapper {
         max-width: 642px;
         margin-left: auto;
         margin-right: auto;
         padding-top: 112px;
         padding-bottom: 194px;
+        background-color: #4caddc;
+        background-image: url("./images/form-bg.png");
+        background-repeat: no-repeat;
+        background-position: center center;
       }
 
       .form-title {
         font-family: "Inter", sans-serif;
         font-weight: 400;
-        font-size: 65px;
+        font-size: 45px;
         color: #fff;
         text-align: center;
         margin-bottom: 67px;
@@ -75,15 +76,18 @@
       .fields {
         display: flex;
         flex-direction: column;
+        align-items: center;
       }
+
       .field-wrapper {
         position: relative;
       }
+
       .form-field {
-        width: 642px;
-        height: 103px;
-        font-size: 30px;
-        padding-left: 103px;
+        width: 442px;
+        height: 53px;
+        font-size: 18px;
+        padding-left: 73px;
         border: none;
         transition: box-shadow 100ms ease-in;
       }
@@ -92,8 +96,7 @@
       }
       .form-field::placeholder {
         font-family: "Poppins", sans-serif;
-        font-weight: 400;
-        font-size: 30px;
+        font-size: 18px;
         color: #3f4b5c;
       }
       .form-email {
@@ -107,12 +110,12 @@
         align-items: center;
         justify-content: center;
         position: absolute;
-        top: 24px;
-        left: 24px;
+        top: 10px;
+        left: 10px;
         padding: 10px;
         border: 1px solid #4475d8;
-        width: 54px;
-        height: 54px;
+        width: 34px;
+        height: 34px;
       }
       .form-btn {
         margin-left: auto;
@@ -120,15 +123,15 @@
         border: none;
         background-color: #4475d8;
         font-family: "Poppins", sans-serif;
-        font-weight: 400;
         font-size: 30px;
         cursor: pointer;
         color: #fff;
         display: block;
-        width: 512px;
-        height: 71px;
+        width: 312px;
+        height: 51px;
         transition: background-color 100ms ease-in;
       }
+
       .form-btn:hover {
         background-color: #335bb5;
       }
@@ -152,10 +155,10 @@
             <div class="icon-wrapper">
               <img
                 class="field-icon"
-                src="./images/email.png"
+                src="./images/email.svg"
                 alt="email"
-                width="26"
-                height="26"
+                width="30"
+                height="30"
               />
             </div>
           </div>
@@ -171,10 +174,10 @@
             <div class="icon-wrapper">
               <img
                 class="field-icon"
-                src="./images/URL.svg"
+                src="./images/url.svg"
                 alt="URL"
-                width="31"
-                height="31"
+                width="25"
+                height="25"
               />
             </div>
           </div>
