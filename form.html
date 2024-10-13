@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL and Email Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@100;400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      h2 {
+        margin: 0;
+      }
+      body {
+        background-color: #4caddc;
+        background-image: url("./images/Group\ 12.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+      /* Optional styles for modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 300px;
+      }
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .close:hover,
+      .close:focus {
+        color: black;
+        cursor: pointer;
+      }
+
+      .form-wrapper {
+        max-width: 642px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 112px;
+        padding-bottom: 194px;
+      }
+
+      .form-title {
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 65px;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 67px;
+      }
+
+      .fields {
+        display: flex;
+        flex-direction: column;
+      }
+      .field-wrapper {
+        position: relative;
+      }
+      .form-field {
+        width: 642px;
+        height: 103px;
+        font-size: 30px;
+        padding-left: 103px;
+        border: none;
+        transition: box-shadow 100ms ease-in;
+      }
+      .form-field:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .form-field::placeholder {
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-size: 30px;
+        color: #3f4b5c;
+      }
+      .form-email {
+        margin-bottom: 41px;
+      }
+      .form-url {
+        margin-bottom: 55px;
+      }
+      .icon-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        padding: 10px;
+        border: 1px solid #4475d8;
+        width: 54px;
+        height: 54px;
+      }
+      .form-btn {
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+        background-color: #4475d8;
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-size: 30px;
+        cursor: pointer;
+        color: #fff;
+        display: block;
+        width: 512px;
+        height: 71px;
+        transition: background-color 100ms ease-in;
+      }
+      .form-btn:hover {
+        background-color: #335bb5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-wrapper">
+      <h2 class="form-title">Send URL and Email</h2>
+
+      <form id="contact" method="post">
+        <div class="fields" id="fields">
+          <div class="field-wrapper">
+            <input
+              class="form-field form-email"
+              type="email"
+              id="email"
+              placeholder="Email"
+              name="email"
+              required
+            />
+            <div class="icon-wrapper">
+              <img
+                class="field-icon"
+                src="./images/email.png"
+                alt="email"
+                width="26"
+                height="26"
+              />
+            </div>
+          </div>
+          <div class="field-wrapper">
+            <input
+              class="form-field form-url"
+              type="url"
+              id="url"
+              placeholder="URL"
+              name="url"
+              required
+            />
+            <div class="icon-wrapper">
+              <img
+                class="field-icon"
+                src="./images/URL.svg"
+                alt="URL"
+                width="31"
+                height="31"
+              />
+            </div>
+          </div>
+          <input class="form-btn" type="submit" value="Send" />
+        </div>
+      </form>
+    </div>
+
+    <!-- Modal -->
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Message sent successfully!</p>
+      </div>
+    </div>
+
+    <script>
+      const ApiBaseUrl = "https://18ae-87-206-61-193.ngrok-free.app"; // Change it when the ngrok URL is changed
+      $(document).ready(function () {
+        let modal = $("#successModal");
+        let span = $(".close");
+
+        $("#contact").submit(function (event) {
+          event.preventDefault();
+
+          let formData = $(this).serialize();
+
+          modal.show();
+
+          span.on("click", function () {
+            modal.hide();
+          });
+
+          $(window).on("click", function (event) {
+            if (event.target == modal[0]) {
+              modal.hide();
+            }
+          });
+
+          $.ajax({
+            type: "POST",
+            url: ApiBaseUrl + "/data/receive-data",
+            data: formData,
+          });
+
+          $("#contact")[0].reset();
+        });
+      });
+    </script>
+  </body>
+</html>
